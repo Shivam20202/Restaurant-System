@@ -1,4 +1,4 @@
-# Saveur — Restaurant Reservation System
+# Shivam — Restaurant Reservation System
 
 A full-stack restaurant reservation management system with role-based access (Customer and Admin), real-time table availability, and overlap prevention. Built as two separate projects: a Node/Express backend with MongoDB Atlas and a React 19 + Vite frontend with Tailwind CSS 4.3.
 
@@ -192,11 +192,6 @@ The frontend proxies `/api` requests to `http://localhost:5000` during developme
 - **Manage tables** — add, edit, activate/deactivate, or delete tables.
 - The admin interface is visually distinguished with an "Admin Dashboard" badge and a different navigation menu.
 
-### Enforcement
-- **Frontend**: `ProtectedRoute` component checks auth state and role, redirecting unauthorized users.
-- **Backend**: `requireAuth` middleware verifies the JWT; `requireAdmin` checks `user.role === 'admin'`. Reservation update/delete routes additionally verify ownership for non-admins.
-
----
 
 ## Reservation & Availability Logic
 
@@ -245,7 +240,7 @@ This is the core validation area. All checks run on the backend; the frontend pr
 2. **Fixed time slots** — customers pick from predefined slots rather than arbitrary times.
 3. **No table combination** — a party of 10 cannot book two 6-seat tables; they must find a single table that seats them.
 4. **No real-time updates** — if another customer books a table while you're on the form, you won't see it until you refresh or change the date.
-5. **Admin role is self-selectable** — anyone can register as admin. Production would require an invitation or admin-promotion flow.
+5. **Admin role is self-selectable** — anyone can register as admin. Production would require an invitation or admin-promotion flow and also admin cannot create reservation.
 6. **Restaurant images use a shared Pexels URL** — the seed uses the same image URL for all restaurants to keep the seed script simple. Replace with unique URLs for production.
 7. **No pagination** — the admin dashboard loads all reservations at once. Fine for the seed dataset, but would need pagination for production scale.
 
